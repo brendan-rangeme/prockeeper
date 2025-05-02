@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - master  # or your default branch
+  push:
+    branches:
+      - master
 
 jobs:
   test:
