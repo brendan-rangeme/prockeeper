@@ -31,7 +31,9 @@ jobs:
         run: |
           mkdir -p dist
           go build -o dist/prockeeper-${GOOS}-${GOARCH}-${{ github.ref_name }}
-          dist/prockeeper-${GOOS}-${GOARCH}-${{ github.ref_name }} --help
+          if [[ ${GOOS} = "linux" ]] && [[ ${GOARCH} = "amd64" ]]; then
+            dist/prockeeper-${GOOS}-${GOARCH}-${{ github.ref_name }} --help
+          fi
       - name: Upload release artifact
         uses: softprops/action-gh-release@v1
         with:
